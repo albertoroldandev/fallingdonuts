@@ -1,0 +1,53 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: black;
+  background-color: white;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  place-items: center;
+  min-height: 100vh;
+  background-color: antiquewhite;
+}
+
+.header {
+  min-height: 80px;
+  display: flex;
+  background-image: url("./public/glaze.svg");
+  background-repeat: repeat-x;
+}
+
+.logo {
+  max-width: 320px;
+}
+
+.main {
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  place-content: center;
+  align-items: center;
+
+}
+
+.main__app {
+  height: 400px;
+  width: 280px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.footer {
+  min-height: 80px;
+  background-image: url("./public/glaze-inverted.svg");
+  background-repeat: repeat-x;
+}

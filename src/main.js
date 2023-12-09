@@ -1,6 +1,7 @@
 import './style.css'
 import Phaser from 'phaser'
 import Game from './scenes/Game'
+import Title from './scenes/Title'
 
 const config = {
   type: Phaser.WEBGL,

@@ -4,25 +4,42 @@
   font-weight: 400;
   color: black;
   background-color: white;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+* {
   margin: 0;
-  place-items: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%
+}
+
+body {
   min-height: 100vh;
   background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header, .footer {
+  min-height: 80px;
+  width: 100%;
+  background-repeat: repeat-x;
 }
 
 .header {
-  min-height: 80px;
-  display: flex;
-  background-image: url("./public/glaze.svg");
-  background-repeat: repeat-x;
+  background-image: url("../public/glaze.svg");
+}
+
+.footer {
+  background-image: url("../public/glaze-inverted.svg");
 }
 
 .logo {
@@ -30,7 +47,7 @@ body {
 }
 
 .main {
-  padding: 0 20px 20px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -39,15 +56,14 @@ body {
 
 }
 
-.main__app {
-  height: 400px;
-  width: 280px;
-  background-color: white;
+.game-container {
+  min-width: 320px;
+  min-height: 426px;
+  max-width: 768px;
+  max-height: 1024px;
+}
+
+.main-canvas {
   border-radius: 20px;
 }
 
-.footer {
-  min-height: 80px;
-  background-image: url("./public/glaze-inverted.svg");
-  background-repeat: repeat-x;
-}

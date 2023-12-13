@@ -17,7 +17,6 @@ const config = {
   physics: {
     default: 'matter',
     matter: {
-      enableSleeping: true
     }
   }
 }

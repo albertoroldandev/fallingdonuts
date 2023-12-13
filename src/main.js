@@ -9,7 +9,7 @@ const config = {
   height: 1024,
   scale: {
     mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH
+    autoCenter: Phaser.Scale.CENTER_BOTH,
   },
   canvas: document.getElementById('gameCanvas'),
   backgroundColor: '#FFFFFF',

@@ -6,7 +6,7 @@ export default class Game extends Phaser.Scene {
   }
 
   iter = 0
-
+  score = 0
 
   preload () {
     this.load.image('1', 'assets/donut1.webp')
@@ -26,25 +26,40 @@ export default class Game extends Phaser.Scene {
   }
 
   create () {
-    this.pop = this.sound.add('pop')
+    this.currentDonut = 1
+
     this.matter.world.setBounds(0, 0, 768, 1000, 32, true, true, false, true)
     this.background = this.add.tileSprite(window.innerWidth / 2, 600, 0, 0, 'background').setScale(0.95)
+    this.pop = this.sound.add('pop')
+    const style = { color: '#FFF', fontSize: 36, fontStyle: 'bold', fontFamily: 'Georgia' }
+    this.scoreText = this.add.text(30, 30, 'Score: 0', style)
+    this.nextDonutText = this.add.text(440, 30, 'Next Donut:', style)
+    this.nextDonutImage = this.add.image(720, 52, this.currentDonut)
+    this.nextDonutImage.displayHeight = 40
+    this.nextDonutImage.displayWidth = 40
+    this.endLine = this.add.rectangle(0, 110, 1540, 4, 0xFFFFFF)
 
     this.input.on('pointerdown', function (pointer) {
-      this.matter.add.sprite(pointer.x, pointer.y, Phaser.Math.Between(1, 5)).setCircle()
+      this.matter.add.sprite(pointer.x, pointer.y, this.currentDonut).setCircle()
+      this.currentDonut = Phaser.Math.Between(1, 5)
+      this.nextDonutImage.setTexture(this.currentDonut)
+      this.nextDonutImage.displayHeight = 40
+      this.nextDonutImage.displayWidth = 40
     }, this)
 
     this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
-      if ((bodyA.mass === bodyB.mass)) {
-        console.log(bodyA)
-        let textureid
-        if (bodyA.gameObject.texture.key < 9) {
-          textureid = +bodyA.gameObject.texture.key + 1
+      if ((bodyA.label === bodyB.label) && (bodyA.gameObject.texture.key === bodyB.gameObject.texture.key)) {
+        let textureid = 0
+        if (bodyB.gameObject.texture.key < 11) {
+          textureid = +bodyB.gameObject.texture.key + 1
           console.log(textureid)
         } else {
-          textureid = 9
+          textureid = 11
         }
-        this.matter.add.sprite(bodyA.position.x, bodyA.position.y, textureid).setCircle()
+        this.matter.add.sprite(bodyB.position.x, bodyB.position.y - 10, textureid).setCircle()
+        this.score += (textureid * 5)
+        const value = `Score: ${this.score}`
+        this.scoreText.text = value
         bodyA.gameObject.setTexture('none')
         bodyB.gameObject.setTexture('none')
         bodyA.destroy()
